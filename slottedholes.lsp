@@ -15,20 +15,94 @@
 	
 )
 
+; Example drawing
+
+;	p1------------p3
+;  /				\
+; |					 |
+; |		  center	 |
+; |					 |
+;  \				/
+;	p2------------p4
 
 (defun C:postest()
 	
-	(setq p1 (getpoint "\nSelect Center point:") )
+	(setq pcenter (getpoint "\nSelect Center point:") )
 
 	(setq heightradius (getreal "\nInput radius:") )
 	
 	(setq lengthradius (getreal "\nInput length:") )
 	
-	(SeverCoord(p1))
+	(prin1 "\nboiz1" )
+	
+	
+		(setq pcenterx (car pcenter)		)
+		
+		
+		(setq pcentery (cadr pcenter)		)
+		
+		
+		(setq pcenterz (caddr pcenter) 		)
 
+	(prin1 "\nboiz1" )
+	
+	;; Create the first point
+	
+	(setq p1x (- pcenterx (/ lengthradius 2.0) ) )
+	
+	(setq p1y (+ pcentery (/ heightradius 2.0) ) )
+	
+	(setq p1z pcenterz)
+	
+	(setq p1 (list(p1x p1y p1z))	)
+	
+	(prin1 "\nboiz1" )
+	
+		;;Create the second point
+		
+		(setq p2x (- pcenterx (/ lengthradius 2) ) )
+		
+		(setq p2y (- pcentery (/ heightradius 2) ) )
+		
+		(setq p2z pcenterz)	
+		
+		(setq p2 (list(p2x p2y p2z)) ) 
+	
+	
+	;;Create the third point
+	
+	(setq p3x (+ pcenterx (/ lengthradius 2) ) )
+	
+	(setq p3y (+ pcentery (/ heightradius 2) ) )
+	
+	(setq p3z pcenterz)		
+
+	(setq p3 (list(p3x p3y p3z)) )
 	
 
+		;;Create the fourth point
+		
+		(setq p4x (+ pcenterx (/ lengthradius 2) ) )
+		
+		(setq p4y (- pcentery (/ heightradius 2) ) )
+		
+		(setq p4z pcenterz)
+		
+		(setq p4 (list(p4x p4y p4z)) )
 
+
+(prin1 "buttz")
+	
+	;;Draw lines between p1-p3 & p2-p4
+	
+	(command "line" p1 p3 "")
+	
+	(command "line" p2 p4 "")
+	
+	;;Draw arc between 
+	
+	;(command "arc" 
+	
 	
 )
 
@@ -36,17 +110,38 @@
 ;   (setq p3 (list (+ (car p1) (car p2)) (+ (cadr p1) (cadrp2)) (+ (caddr p1) (caddr p2)) ))
 ;)
 
-(defun SeverCoord(p1)		;; Disassembles the position(list) into individual reals
-	(setq p1x (car p1)		)
+;(defun SeverCoord()		;; Disassembles the position(list) into individual reals
+;	
+;	
+;	
+;	(setq pcenterx (car pcenter)		)
+;	
+;	(prin1 pcenterx)
+;	
+;	(setq pcentery (cadr pcenter)		)
+;	
+;	(setq pcenterz (caddr pcenter) 		)
+;	
+;
+
+(defun C:drawlines(/ foo1 foo2)
+
+	(setq foo1 (getpoint "\nSelect point:")	)
+	(setq foo2 (getpoint "\nget another point:") ) 
 	
-	(setq p1y (cadr p1)		)
-	
-	(setq p1z (caddr p1) 	)
-	
+	(command "line" foo1 foo2 "")
 )
+
+
+
 
 (defun C:findcoord()   ;; Returns a mouse position (Only for debugging)
 
 	(prin1 (getpoint "\nPick point") )
 
 )
+
+
+
+^C^C-purge;a;;n;;a;;n;;a;;n;;r;;n;
+^C^Ccircle;\;text;m;@;;0;\qleader;\per;\^C 
